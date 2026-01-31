@@ -1,0 +1,2454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Five Personality Test - Complete Version</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+            --accent-color: #FF9800;
+            --background-color: #f5f5f5;
+            --card-background: white;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(to right, rgb(204, 230, 178), rgb(217, 224, 109),rgb(241, 242, 219));
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: var(--card-background);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: var(--secondary-color);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        
+        
+        .section {
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            box-sizing: border-box; 
+            overflow: hidden;
+        }
+
+        .section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+    font-size: 15px;
+    clear: both; /* 关键：每个标签在新行开始 */
+    width: 100%;
+        }
+
+        .section .form-control {
+    display: block;
+    width: 83%;
+    max-width: 800px;
+    margin-bottom: 20px; /* 增加下边距，确保间距 */
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    background: white;
+        }
+
+        #age {
+    width: 80%;
+    max-width: 800px;
+    margin-bottom: 20px;
+        }
+
+        #ideal-job {
+    width: 80%;
+    max-width: 800px;
+    margin-bottom: 20px;
+        }
+
+        .section .warning {
+    display: block;
+    margin: 5px 0 15px 0;
+    clear: both;
+    width: 100%;
+        }
+
+       
+        .question {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+            box-sizing: border-box; 
+        }
+        
+        .question:hover {
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            border-color: var(--primary-color);
+        }
+        
+        .question p {
+            margin: 0 0 15px 0;
+            font-size: 16px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 10px 0;
+        }
+        
+        .scale-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            color: #666;
+            font-size: 13px;
+        }
+        
+        .scale-labels span {
+            flex: 1;
+            text-align: center;
+        }
+        
+        input[type="range"] {
+            flex-grow: 1;
+            height: 6px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: linear-gradient(to right, #f89306, #ffd166, #c3e81d);
+            border-radius: 3px;
+            outline: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .score-display {
+            min-width: 40px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            color: var(--primary-color);
+            background: #f0f9f0;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid #c8e6c9;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control {
+            width: 70%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+        }
+        
+        button {
+            background: var(--primary-color);
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        button:hover {
+            background: #3d8b40;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        button:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .results-section {
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f4f5f9 0%, #f7f4fa 100%);
+            color: white;
+            border-radius: 15px;
+        }
+        
+        .radar-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .career-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .career-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .career-item.top {
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .career-item.bottom {
+            border-left: 4px solid #f44336;
+        }
+        
+        .rank {
+            display: inline-block;
+            background: #333;
+            color: white;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .language-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+        
+        .progress-bar {
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            border-radius: 3px;
+            margin: 20px 0;
+            transition: width 0.5s ease;
+        }
+        
+        .disclaimer {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+            color: #856404;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .warning {
+            color: #f44336;
+            padding: 10px;
+            margin: 10px 0;
+            background: #ffebee;
+            border-radius: 5px;
+            border-left: 4px solid #f44336;
+        }
+
+        
+        
+        .trait-score {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+            box-sizing: border-box; 
+            display: flex;
+            justify-content: space-around; 
+            align-items: center; /* 垂直居中 */
+            width: 100%;
+            padding: 14px 25px;
+        }
+        
+        .trait-name {
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+            margin: 0;
+    text-align: left;
+    flex: 1; /* 占据剩余空间 */
+    padding-right: 30px;
+        }
+        
+        .trait-value {
+            font-weight: bold;
+            font-size: 18px;
+            color: var(--primary-color);
+            background: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 2px solid #e0e0e0;
+            width: 100px;
+            text-align: center !important;
+            box-sizing: border-box;
+            display: flex;
+            flex-shrink: 0;
+    margin-left: auto;
+    justify-content: center;
+    align-items: center;
+    
+
+        }
+
+
+        #scores-title {
+    color: #333 !important;
+    font-size: 1.4em !important;
+    font-weight: 600 !important;
+    margin-bottom: 15px !important;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #4CAF50 !important;
+    display: inline-block;
+        }
+
+        /* 修改前10推荐职业标题 */
+        #top-careers-title {
+    color: #333 !important;
+    font-size: 1.4em !important;
+    font-weight: 600 !important;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #4CAF50; /* 绿色边框，表示推荐 */
+        }
+
+        /* 修改最不推荐职业标题 */
+        #bottom-careers-title {
+    color: #333 !important;
+    font-size: 1.4em !important;
+    font-weight: 600 !important;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #f44336; /* 红色边框，表示不推荐 */
+        }
+        
+        
+
+       
+        
+       
+
+       
+        
+        /* 新添加的动画样式 */
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .question {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .language-change-notice {
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+            display: none;
+        }
+    </style>
+    <!-- 使用新版 Plotly -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- 引入 html2canvas 库 -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-3.3.1.min.js" charset="utf-8"></script>
+
+</head>
+<body>
+    <!-- 语言切换提示 -->
+    <div id="language-change-notice" class="language-change-notice"></div>
+    
+    <!-- 语言选择器 -->
+    <div class="language-selector">
+        <select id="language-select" class="form-control" style="width: auto; padding: 8px 12px;">
+            <option value="en">English</option>
+            <option value="zh">中文</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="ru">Русский</option>
+            <option value="ar">العربية</option>
+        </select>
+    </div>
+    
+    <div class="container">
+        <h1 id="main-title">Big Five Personality Test</h1>
+        
+        <form id="personality-form">
+            <!-- Demographics Section -->
+            <div class="section">
+                <h2 id="demographics-title">Demographics</h2>
+                
+                <label for="gender" id="gender-label">Gender:</label>
+                <select id="gender" name="gender" class="form-control">
+                    <option value="Female" id="gender-female">Female</option>
+                    <option value="Male" id="gender-male">Male</option>
+                </select>
+                
+                <label for="age" id="age-label">Age:</label>
+                <input type="number" id="age" name="age" min="18" max="70" value="25" class="form-control">
+                
+                <div id="age-warning" class="warning" style="display: none;">
+                    Please enter an age between 18 and 70
+                </div>
+                
+                <label for="ideal-job" id="ideal-job-label">Your ideal career (e.g., Data Scientist):</label>
+                <input type="text" id="ideal-job" name="ideal-job" placeholder="e.g., Data Scientist" class="form-control">
+                <div id="ideal-job-warning" class="warning" style="display: none;">
+                    ⚠️ Please enter your ideal career.
+                </div>
+            </div>
+            
+            <!-- Questions Section -->
+            <div class="section">
+                <h2 id="questions-title">Personality Assessment</h2>
+                <p id="instructions">Please read each statement and indicate how much you agree or disagree using the following scale:</p>
+                
+                <div id="questions-container">
+                    <!-- Questions will be dynamically loaded here -->
+                </div>
+                
+                <div id="questions-warning" class="warning" style="display: none;">
+                    Please answer all questions before submitting
+                </div>
+            </div>
+            
+            <button type="submit" id="submit-btn">Submit Test</button>
+        </form>
+        
+        <!-- Loading State -->
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p id="loading-text">Processing your results...</p>
+        </div>
+        
+        <!-- Results Section -->
+        <div id="results" style="display: none;">
+            <div class="results-section">
+                <h2 id="results-title">Your Personality Profile</h2>
+                
+                <!-- Personality Scores -->
+                <div class="section" style="background: #ffff;">
+                    <h3 id="scores-title">Your Big Five Scores (T-scores)</h3>
+                    <div id="trait-scores-container"></div>
+                </div>
+                
+                
+                
+                <!-- Radar Chart -->
+                <div class="radar-container">
+                    <div id="radar-chart" style="width: 100%; height: 400px;"></div>
+                </div>
+                
+                <!-- Career Recommendations -->
+                <h3 id="top-careers-title">Top 10 Recommended Careers</h3>
+                <div id="top-careers" class="career-list"></div>
+                
+                <h3 id="bottom-careers-title">10 Least Recommended Careers</h3>
+                <div id="bottom-careers" class="career-list"></div>
+                
+                <!-- Disclaimer -->
+                <div class="disclaimer">
+                    <h4 id="disclaimer-title">Important Note</h4>
+                    <p id="disclaimer-text"></p>
+                </div>
+                
+                <!-- Download Button -->
+                <button id="download-btn" onclick="generatePDF()">Download PDF Report</button>
+                
+                <!-- Restart Button -->
+                <button id="restart-btn" onclick="restartTest()" style="margin-left: 10px; background: var(--secondary-color);">Take Test Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== 全局变量 ====================
+        let appData = null;
+        let currentLanguage = 'en';
+        let userResponses = {};
+        let personalityScores = null;
+        let jobRecommendations = [];
+        let isInitialized = false;
+
+        // ==================== 语言翻译数据 ====================
+        const translations = {
+            en: {
+                mainTitle: "Big Five Personality Test",
+                demographicsTitle: "Demographics",
+                genderLabel: "Gender:",
+                genderFemale: "Female",
+                genderMale: "Male",
+                ageLabel: "Age:",
+                ageWarning: "Please enter an age between 18 and 70",
+                idealJobLabel: "Your ideal career (e.g., Data Scientist):",
+                idealJobWarning: "⚠️ Please enter your ideal career.",
+                questionsTitle: "Personality Assessment",
+                instructions: "Please read each statement and indicate how much you agree or disagree using the following scale:",
+                questionsWarning: "Please answer all questions before submitting",
+                submitBtn: "Submit Test",
+                loadingText: "Processing your results...",
+                resultsTitle: "Your Personality Profile",
+                scoresTitle: "Your Big Five Scores (T-scores)",
+                topCareersTitle: "Top 10 Recommended Careers",
+                bottomCareersTitle: "10 Least Recommended Careers",
+                disclaimerTitle: "Important Note",
+                disclaimerText: "The career recommendations provided here are for your reference only. It's important to consider your personal circumstances, preferences, and goals when making a career decision.",
+                downloadBtn: "Download PDF Report",
+                restartBtn: "Take Test Again",
+                scaleLabels: ["Strongly Disagree", "Disagree", "Slightly Disagree", "Slightly Agree", "Agree", "Strongly Agree"],
+                languageChanged: "Language changed to English",
+                careerMatchTitle: "Career Match",
+        noCareerData: "No career recommendation data",
+        compositeMatch: "Composite Match",
+        similarity: "Similarity",
+        mlpScore: "MLP Score"
+            },
+            zh: {
+                mainTitle: "五大人格测试",
+                demographicsTitle: "基本信息",
+                genderLabel: "性别：",
+                genderFemale: "女",
+                genderMale: "男",
+                ageLabel: "年龄：",
+                ageWarning: "请输入18-70岁之间的年龄",
+                idealJobLabel: "您的理想职业（例如：数据科学家）：",
+                idealJobWarning: "⚠️ 请输入您的理想职业。",
+                questionsTitle: "人格评估",
+                instructions: "请阅读以下陈述，并使用1-6分表示您同意或不同意的程度：",
+                questionsWarning: "请回答所有问题后再提交",
+                submitBtn: "提交测试",
+                loadingText: "正在处理您的结果...",
+                resultsTitle: "您的人格概况",
+                scoresTitle: "您的五大人格分数（T分数）",
+                topCareersTitle: "前10个推荐职业",
+                bottomCareersTitle: "10个最不推荐职业",
+                disclaimerTitle: "重要提示",
+                disclaimerText: "这里提供的职业推荐仅供参考。在做出职业选择时，请务必考虑您的个人情况、兴趣和目标。",
+                downloadBtn: "下载PDF报告",
+                restartBtn: "重新测试",
+                scaleLabels: ["非常不同意", "不同意", "有点不同意", "有点同意", "同意", "非常同意"],
+                languageChanged: "语言已切换为中文",
+                careerMatchTitle: "职业匹配",
+        noCareerData: "暂无职业推荐数据",
+        compositeMatch: "综合匹配度",
+        similarity: "相似度",
+        mlpScore: "MLP预测"
+            },
+            es: {
+                mainTitle: "Test de Personalidad Big Five",
+                demographicsTitle: "Datos Demográficos",
+                genderLabel: "Género:",
+                genderFemale: "Femenino",
+                genderMale: "Masculino",
+                ageLabel: "Edad:",
+                ageWarning: "Por favor ingrese una edad entre 18 y 70",
+                idealJobLabel: "Tu carrera ideal (ej: Científico de Datos):",
+                idealJobWarning: "⚠️ Por favor ingresa tu carrera ideal.",
+                questionsTitle: "Evaluación de Personalidad",
+                instructions: "Por favor lee cada afirmación e indica cuánto estás de acuerdo o en desacuerdo usando la siguiente escala:",
+                questionsWarning: "Por favor responde todas las preguntas antes de enviar",
+                submitBtn: "Enviar Test",
+                loadingText: "Procesando tus resultados...",
+                resultsTitle: "Tu Perfil de Personalidad",
+                scoresTitle: "Tus Puntajes Big Five (Puntajes T)",
+                topCareersTitle: "Top 10 Carreras Recomendadas",
+                bottomCareersTitle: "10 Carreras Menos Recomendadas",
+                disclaimerTitle: "Nota Importante",
+                disclaimerText: "Las recomendaciones de carrera proporcionadas aquí son solo para tu referencia. Es importante considerar tus circunstancias personales, preferencias y objetivos al tomar una decisión de carrera.",
+                downloadBtn: "Descargar Reporte PDF",
+                restartBtn: "Hacer el Test de Nuevo",
+                scaleLabels: ["Muy en desacuerdo", "En desacuerdo", "Algo en desacuerdo", "Algo de acuerdo", "De acuerdo", "Muy de acuerdo"],
+                languageChanged: "Idioma cambiado a Español",
+                 careerMatchTitle: "Coincidencia de Carrera",
+        noCareerData: "No hay datos de recomendación de carrera",
+        compositeMatch: "Coincidencia Compuesta",
+        similarity: "Similitud",
+        mlpScore: "Puntuación MLP"
+            },
+            fr: {
+                mainTitle: "Test de Personnalité Big Five",
+                demographicsTitle: "Démographie",
+                genderLabel: "Genre:",
+                genderFemale: "Femme",
+                genderMale: "Homme",
+                ageLabel: "Âge:",
+                ageWarning: "Veuillez entrer un âge entre 18 et 70 ans",
+                idealJobLabel: "Votre métier idéal (ex: Data Scientist):",
+                idealJobWarning: "⚠️ Veuillez entrer votre métier idéal.",
+                questionsTitle: "Évaluation de la Personnalité",
+                instructions: "Veuillez lire chaque affirmation et indiquer dans quelle mesure vous êtes d'accord ou non en utilisant l'échelle suivante:",
+                questionsWarning: "Veuillez répondre à toutes les questions avant de soumettre",
+                submitBtn: "Soumettre le Test",
+                loadingText: "Traitement de vos résultats...",
+                resultsTitle: "Votre Profil de Personnalité",
+                scoresTitle: "Vos Scores Big Five (scores T)",
+                topCareersTitle: "Top 10 Métiers Recommandés",
+                bottomCareersTitle: "10 Métiers Déconseillés",
+                disclaimerTitle: "Note Importante",
+                disclaimerText: "Les recommandations de carrière fournies ici sont uniquement à titre indicatif. Il est important de prendre en compte vos circonstances personnelles, vos préférences et vos objectifs lors d'une décision de carrière.",
+                downloadBtn: "Télécharger le Rapport PDF",
+                restartBtn: "Refaire le Test",
+                scaleLabels: ["Pas du tout d'accord", "Pas d'accord", "Plutôt pas d'accord", "Plutôt d'accord", "D'accord", "Tout à fait d'accord"],
+                languageChanged: "Langue changée en Français",
+                careerMatchTitle: "Correspondance de Carrière",
+        noCareerData: "Aucune donnée de recommandation de carrière",
+        compositeMatch: "Correspondance Composite",
+        similarity: "Similitude",
+        mlpScore: "Score MLP"
+            },
+            ru: {
+                mainTitle: "Тест личности Big Five",
+                demographicsTitle: "Демографические данные",
+                genderLabel: "Пол:",
+                genderFemale: "Женский",
+                genderMale: "Мужской",
+                ageLabel: "Возраст:",
+                ageWarning: "Пожалуйста, введите возраст от 18 до 70 лет",
+                idealJobLabel: "Ваша идеальная профессия (например, Data Scientist):",
+                idealJobWarning: "⚠️ Пожалуйста, введите вашу идеальную профессию.",
+                questionsTitle: "Оценка личности",
+                instructions: "Пожалуйста, прочитайте каждое утверждение и укажите, насколько вы согласны или не согласны, используя следующую шкалу:",
+                questionsWarning: "Пожалуйста, ответьте на все вопросы перед отправкой",
+                submitBtn: "Отправить тест",
+                loadingText: "Обработка ваших результатов...",
+                resultsTitle: "Ваш профиль личности",
+                scoresTitle: "Ваши баллы по Big Five (T-баллы)",
+                topCareersTitle: "Топ 10 рекомендуемых профессий",
+                bottomCareersTitle: "10 нерекомендуемых профессий",
+                disclaimerTitle: "Важное примечание",
+                disclaimerText: "Рекомендации по карьере, представленные здесь, предназначены только для справки. При принятии карьерного решения важно учитывать ваши личные обстоятельства, предпочтения и цели.",
+                downloadBtn: "Скачать PDF отчет",
+                restartBtn: "Пройти тест снова",
+                scaleLabels: ["Полностью не согласен", "Не согласен", "Скорее не согласен", "Скорее согласен", "Согласен", "Полностью согласен"],
+                languageChanged: "Язык изменен на Русский",
+                careerMatchTitle: "Совпадение карьеры",
+        noCareerData: "Нет данных о рекомендациях по карьере",
+        compositeMatch: "Совместимое совпадение",
+        similarity: "Сходство",
+        mlpScore: "Оценка MLP"
+
+            },
+            ar: {
+                mainTitle: "اختبار الشخصية Big Five",
+                demographicsTitle: "البيانات الديموغرافية",
+                genderLabel: "الجنس:",
+                genderFemale: "أنثى",
+                genderMale: "ذكر",
+                ageLabel: "العمر:",
+                ageWarning: "الرجاء إدخال عمر بين 18 و 70",
+                idealJobLabel: "مهنتك المثالية (مثال: عالم بيانات):",
+                idealJobWarning: "⚠️ الرجاء إدخال مهنتك المثالية.",
+                questionsTitle: "تقييم الشخصية",
+                instructions: "الرجاء قراءة كل عبارة والإشارة إلى مدى موافقتك أو عدم موافقتك باستخدام المقياس التالي:",
+                questionsWarning: "الرجاء الإجابة على جميع الأسئلة قبل الإرسال",
+                submitBtn: "إرسال الاختبار",
+                loadingText: "معالجة نتائجك...",
+                resultsTitle: "ملفك الشخصي",
+                scoresTitle: "درجاتك في Big Five (درجات T)",
+                topCareersTitle: "أفضل 10 مهن موصى بها",
+                bottomCareersTitle: "10 مهن غير موصى بها",
+                disclaimerTitle: "ملاحظة هامة",
+                disclaimerText: "توصيات المهنة المقدمة هنا هي للرجوع إليها فقط. من المهم مراعاة ظروفك الشخصية وتفضيلاتك وأهدافك عند اتخاذ قرار مهني.",
+                downloadBtn: "تنزيل تقرير PDF",
+                restartBtn: "إعادة الاختبار",
+                scaleLabels: ["لا أوافق بشدة", "لا أوافق", "لا أوافق إلى حد ما", "أوافق إلى حد ما", "أوافق", "أوافق بشدة"],
+                languageChanged: "تم تغيير اللغة إلى العربية",
+                careerMatchTitle: "مطابقة المهنة",
+        noCareerData: "لا توجد بيانات توصيات مهنية",
+        compositeMatch: "مطابقة مركبة",
+        similarity: "تشابه",
+        mlpScore: "نتيجة MLP"
+            }
+        };
+
+        // ==================== 初始化函数 ====================
+        // 页面加载时立即执行
+        (function initializePage() {
+            console.log('🚀 页面初始化开始...');
+            
+            // 设置默认语言
+            const savedLanguage = localStorage.getItem('big5_language');
+            if (savedLanguage && translations[savedLanguage]) {
+                currentLanguage = savedLanguage;
+            }
+            
+            // 设置语言选择器的值
+            setTimeout(() => {
+                const languageSelect = document.getElementById('language-select');
+                if (languageSelect) {
+                    languageSelect.value = currentLanguage;
+                }
+            }, 100);
+            
+            // 加载应用数据
+            loadAppData();
+            
+            // 监听DOM加载完成
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', onDOMContentLoaded);
+            } else {
+                onDOMContentLoaded();
+            }
+        })();
+
+        // DOM加载完成后的处理
+        function onDOMContentLoaded() {
+            console.log('📄 DOM加载完成');
+            
+            // 设置事件监听器
+            setupEventListeners();
+            
+            // 显示初始语言
+            updateLanguageUI();
+            
+            isInitialized = true;
+            console.log('✅ 页面初始化完成');
+        }
+
+        // ==================== 数据加载 ====================
+        async function loadAppData() {
+            console.log('📦 开始加载应用数据...');
+            
+            try {
+                // 尝试从不同路径加载数据
+                const possiblePaths = [
+                    'app_data_complete.json',
+                    './app_data_complete.json',
+                    'data/app_data_complete.json'
+                ];
+                
+                let dataLoaded = false;
+                
+                for (const path of possiblePaths) {
+                    try {
+                        const response = await fetch(path);
+                        if (response.ok) {
+                            appData = await response.json();
+                            console.log(`✅ 数据从 ${path} 加载成功`);
+                            console.log('数据统计:', {
+                                职业数量: appData.n_jobs || '未知',
+                                问题数量: appData.n_questions || '未知',
+                                支持语言: appData.languages_supported || '未知',
+                                是否有问题数据: !!(appData.questions && Object.keys(appData.questions).length > 0)
+                            });
+                            dataLoaded = true;
+                            break;
+                        }
+                    } catch (e) {
+                        console.log(`路径 ${path} 加载失败: ${e.message}`);
+                    }
+                }
+                
+                if (!dataLoaded) {
+                    console.warn('📂 无法从任何路径加载数据，使用默认数据');
+                    appData = getDefaultData();
+                }
+                
+                // 确保问题数据存在
+                ensureQuestionData();
+                
+                // 立即初始化问题
+                if (document.readyState !== 'loading') {
+                    initializeQuestions();
+                }
+                
+            } catch (error) {
+                console.error('❌ 数据加载失败:', error);
+                appData = getDefaultData();
+                ensureQuestionData();
+                
+                if (document.readyState !== 'loading') {
+                    initializeQuestions();
+                }
+            }
+        }
+
+        // 确保问题数据存在
+        function ensureQuestionData() {
+            if (!appData.questions) {
+                appData.questions = {};
+            }
+            
+            // 为每种语言确保有足够的问题
+            Object.keys(translations).forEach(lang => {
+                if (!appData.questions[lang] || !Array.isArray(appData.questions[lang])) {
+                    appData.questions[lang] = generateDefaultQuestions(lang, 74);
+                }
+                
+                // 确保有74个问题
+                while (appData.questions[lang].length < 74) {
+                    appData.questions[lang].push(`${translations[lang].questionsTitle} ${appData.questions[lang].length + 1}`);
+                }
+            });
+        }
+
+        // 生成默认问题
+        function generateDefaultQuestions(lang, count) {
+            const templates = {
+                en: [
+                    "I am the life of the party.",
+                    "I feel little concern for others.",
+                    "I am always prepared.",
+                    "I get stressed out easily.",
+                    "I have a rich vocabulary.",
+                    "I don't talk a lot.",
+                    "I am interested in people.",
+                    "I leave my belongings around.",
+                    "I am relaxed most of the time.",
+                    "I have difficulty understanding abstract ideas."
+                ],
+                zh: [
+                    "我是派对的中心人物。",
+                    "我不太关心他人。",
+                    "我总是做好准备。",
+                    "我很容易感到压力。",
+                    "我有丰富的词汇量。",
+                    "我不太爱说话。",
+                    "我对人感兴趣。",
+                    "我把东西乱放。",
+                    "我大部分时间都很放松。",
+                    "我难以理解抽象概念。"
+                ],
+                es: [
+                    "Soy el alma de la fiesta.",
+                    "Siento poca preocupación por los demás.",
+                    "Siempre estoy preparado.",
+                    "Me estreso fácilmente.",
+                    "Tengo un vocabulario rico.",
+                    "No hablo mucho.",
+                    "Me interesa la gente.",
+                    "Dejo mis pertenencias por ahí.",
+                    "Estoy relajado la mayor parte del tiempo.",
+                    "Tengo dificultad para entender ideas abstractas."
+                ],
+                fr: [
+                    "Je suis l'âme de la fête.",
+                    "Je me soucie peu des autres.",
+                    "Je suis toujours préparé.",
+                    "Je suis facilement stressé.",
+                    "J'ai un vocabulaire riche.",
+                    "Je ne parle pas beaucoup.",
+                    "Je m'intéresse aux gens.",
+                    "Je laisse traîner mes affaires.",
+                    "Je suis détendu la plupart du temps.",
+                    "J'ai du mal à comprendre les idées abstraites."
+                ],
+                ru: [
+                    "Я душа компании.",
+                    "Я мало беспокоюсь о других.",
+                    "Я всегда готов.",
+                    "Я легко нервничаю.",
+                    "У меня богатый словарный запас.",
+                    "Я мало разговариваю.",
+                    "Мне интересны люди.",
+                    "Я разбрасываю свои вещи.",
+                    "Я расслаблен большую часть времени.",
+                    "Мне трудно понимать абстрактные идеи."
+                ],
+                ar: [
+                    "أنا روح الحفلة.",
+                    "أشعر بقليل من الاهتمام بالآخرين.",
+                    "أنا دائمًا مستعد.",
+                    "أشعر بالتوتر بسهولة.",
+                    "لدي مفردات غنية.",
+                    "لا أتحدث كثيرًا.",
+                    "أنا مهتم بالناس.",
+                    "أترك ممتلكاتي في كل مكان.",
+                    "أنا مسترخي معظم الوقت.",
+                    "أجد صعوبة في فهم الأفكار المجردة."
+                ]
+            };
+            
+            const baseQuestions = templates[lang] || templates.en;
+            const questions = [];
+            
+            for (let i = 0; i < count; i++) {
+                if (i < baseQuestions.length) {
+                    questions.push(baseQuestions[i]);
+                } else {
+                    questions.push(`${translations[lang]?.questionsTitle || 'Question'} ${i + 1}`);
+                }
+            }
+            
+            return questions;
+        }
+
+        // 获取默认数据
+        function getDefaultData() {
+            console.log('使用默认数据集');
+            
+            // 生成所有语言的默认问题
+            const questions = {};
+            Object.keys(translations).forEach(lang => {
+                questions[lang] = generateDefaultQuestions(lang, 74);
+            });
+            
+            return {
+                questions: questions,
+                mean_norms: {
+                    1: Array(74).fill(4.0),
+                    2: Array(74).fill(4.0),
+                    3: Array(74).fill(4.0),
+                    4: Array(74).fill(4.0)
+                },
+                sd_norms: {
+                    1: Array(74).fill(1.0),
+                    2: Array(74).fill(1.0),
+                    3: Array(74).fill(1.0),
+                    4: Array(74).fill(1.0)
+                },
+                weights: Array(74).fill().map(() => [
+                    Math.random() * 0.5 - 0.25,
+                    Math.random() * 0.5 - 0.25,
+                    Math.random() * 0.5 - 0.25,
+                    Math.random() * 0.5 - 0.25,
+                    Math.random() * 0.5 - 0.25
+                ]),
+                job_translations: {
+                    en: ["Data Scientist", "Psychologist", "Teacher", "Engineer", "Artist", 
+                         "Doctor", "Lawyer", "Accountant", "Designer", "Manager"],
+                    zh: ["数据科学家", "心理学家", "教师", "工程师", "艺术家",
+                         "医生", "律师", "会计师", "设计师", "经理"],
+                    es: ["Científico de Datos", "Psicólogo", "Profesor", "Ingeniero", "Artista",
+                         "Doctor", "Abogado", "Contador", "Diseñador", "Gerente"],
+                    fr: ["Scientifique des Données", "Psychologue", "Enseignant", "Ingénieur", "Artiste",
+                         "Médecin", "Avocat", "Comptable", "Designer", "Manager"],
+                    ru: ["Специалист по данным", "Психолог", "Учитель", "Инженер", "Художник",
+                         "Врач", "Адвокат", "Бухгалтер", "Дизайнер", "Менеджер"],
+                    ar: ["عالم بيانات", "طبيب نفسي", "معلم", "مهندس", "فنان",
+                         "طبيب", "محامي", "محاسب", "مصمم", "مدير"]
+                },
+                job_codes: ['1000', '101x', '1221', '200x', '2221', 
+                          '2300', '2310', '2411', '3313', '3322'],
+                scaled_features: [
+                    [50, 50, 50, 50, 50],
+                    [60, 40, 55, 70, 45],
+                    [45, 60, 40, 75, 65],
+                    [40, 55, 65, 40, 75],
+                    [55, 65, 80, 50, 35],
+                    [65, 45, 40, 70, 80],
+                    [55, 70, 50, 30, 85],
+                    [40, 40, 35, 45, 90],
+                    [50, 60, 85, 55, 45],
+                    [60, 75, 55, 60, 70]
+                ],
+                n_jobs: 10,
+                n_questions: 74,
+                languages_supported: ['en', 'zh', 'es', 'fr', 'ru', 'ar'],
+                is_default_data: true
+            };
+        }
+
+        // ==================== 语言管理 ====================
+        // 更新语言UI
+        function updateLanguageUI() {
+            console.log(`更新语言UI: ${currentLanguage}`);
+            
+            const texts = translations[currentLanguage] || translations.en;
+            
+            // 批量更新文本内容
+            const elementsToUpdate = {
+                'main-title': texts.mainTitle,
+                'demographics-title': texts.demographicsTitle,
+                'gender-label': texts.genderLabel,
+                'gender-female': texts.genderFemale,
+                'gender-male': texts.genderMale,
+                'age-label': texts.ageLabel,
+                'ideal-job-label': texts.idealJobLabel,
+                'questions-title': texts.questionsTitle,
+                'instructions': texts.instructions,
+                'submit-btn': texts.submitBtn,
+                'loading-text': texts.loadingText,
+                'results-title': texts.resultsTitle,
+                'scores-title': texts.scoresTitle,
+                'top-careers-title': texts.topCareersTitle,
+                'bottom-careers-title': texts.bottomCareersTitle,
+                'disclaimer-title': texts.disclaimerTitle,
+                'disclaimer-text': texts.disclaimerText,
+                'download-btn': texts.downloadBtn,
+                'restart-btn': texts.restartBtn,
+                
+            };
+            
+            Object.keys(elementsToUpdate).forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = elementsToUpdate[id];
+                }
+            });
+            
+            // 更新警告文本
+            const warnings = {
+                'age-warning': texts.ageWarning,
+                'ideal-job-warning': texts.idealJobWarning,
+                'questions-warning': texts.questionsWarning
+            };
+            
+            Object.keys(warnings).forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.textContent = warnings[id];
+                }
+            });
+            
+            // 重新初始化问题
+            if (isInitialized) {
+                initializeQuestions();
+            }
+        }
+        // 更新结果页面的语言
+        function updateResultsLanguage() {
+    console.log(`🔄 更新结果页面语言: ${currentLanguage}`);
+    
+    const texts = translations[currentLanguage] || translations.en;
+    
+    // 更新结果页面的所有文本
+    const elementsToUpdate = {
+        'results-title': texts.resultsTitle,
+        'scores-title': texts.scoresTitle,
+        'top-careers-title': texts.topCareersTitle,
+        'bottom-careers-title': texts.bottomCareersTitle,
+        'disclaimer-title': texts.disclaimerTitle,
+        'disclaimer-text': texts.disclaimerText,
+        'download-btn': texts.downloadBtn,
+        'restart-btn': texts.restartBtn
+    };
+    
+    Object.keys(elementsToUpdate).forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = elementsToUpdate[id];
+        }
+    });
+    
+    // 更新理想职业匹配部分的标题
+    const idealJobTitle = document.querySelector('#ideal-job-result h3');
+    if (idealJobTitle) {
+        idealJobTitle.textContent = translations[currentLanguage]?.careerMatchTitle || 'Career Match';
+    }
+    
+    // 重新显示所有数据（确保使用正确的语言）
+    if (personalityScores && personalityScores.T_scores) {
+        displayTraitScores(personalityScores.T_scores);
+        displayIdealJobMatch();
+        displayTopCareers();
+        displayBottomCareers();
+        createRadarChart(personalityScores.T_scores);
+    }
+}
+
+        // 显示语言切换提示
+        function showLanguageChangeNotice(lang) {
+            const notice = document.getElementById('language-change-notice');
+            if (notice) {
+                const texts = translations[lang] || translations.en;
+                notice.textContent = texts.languageChanged || `Language changed to ${lang}`;
+                notice.style.display = 'block';
+                
+                setTimeout(() => {
+                    notice.style.display = 'none';
+                }, 2000);
+            }
+        }
+
+        // ==================== 问题管理 ====================
+        // 初始化问题
+        function initializeQuestions() {
+            console.log(`🔄 初始化问题 (语言: ${currentLanguage})`);
+            
+            const container = document.getElementById('questions-container');
+            if (!container) {
+                console.error('问题容器未找到');
+                return;
+            }
+            
+            // 保存当前回答
+            const currentAnswers = { ...userResponses };
+            
+            // 清空容器
+            container.innerHTML = '';
+            
+            // 获取当前语言的问题
+            let questions = [];
+            if (appData && appData.questions && appData.questions[currentLanguage]) {
+                questions = appData.questions[currentLanguage];
+                console.log(`从数据中获取 ${questions.length} 个问题`);
+            } else {
+                // 生成默认问题
+                questions = generateDefaultQuestions(currentLanguage, 74);
+                console.log(`生成 ${questions.length} 个默认问题`);
+            }
+            
+            // 确保有74个问题
+            const neededQuestions = 74;
+            if (questions.length < neededQuestions) {
+                console.warn(`只有 ${questions.length} 个问题，需要 ${neededQuestions} 个`);
+                while (questions.length < neededQuestions) {
+                    questions.push(`${translations[currentLanguage]?.questionsTitle || 'Question'} ${questions.length + 1}`);
+                }
+            }
+            
+            // 只取前74个
+            questions = questions.slice(0, neededQuestions);
+            
+            // 创建问题元素
+            questions.forEach((questionText, index) => {
+                const questionId = `q${index}`;
+                const previousValue = currentAnswers[questionId] || 4;
+                
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `
+                    <p><strong>${index + 1}.</strong> ${questionText}</p>
+                    <div class="slider-container">
+                        <span style="color: #666; font-size: 14px; min-width: 20px;">1</span>
+                        <input type="range" 
+                               id="${questionId}" 
+                               name="${questionId}"
+                               min="1" 
+                               max="6" 
+                               value="${previousValue}"
+                               class="question-slider"
+                               data-index="${index}">
+                        <span style="color: #666; font-size: 14px; min-width: 20px;">6</span>
+                        <div class="score-display" id="score-${questionId}">${previousValue}</div>
+                    </div>
+                    <div class="scale-labels">
+                        <span>${(translations[currentLanguage] || translations.en).scaleLabels[0]}</span>
+                        <span>${(translations[currentLanguage] || translations.en).scaleLabels[2]}</span>
+                        <span>${(translations[currentLanguage] || translations.en).scaleLabels[4]}</span>
+                        <span>${(translations[currentLanguage] || translations.en).scaleLabels[5]}</span>
+                    </div>
+                `;
+                
+                container.appendChild(questionDiv);
+                
+                // 保存用户回答
+                userResponses[questionId] = previousValue;
+            });
+            
+            console.log(`✅ 已创建 ${questions.length} 个问题`);
+            
+            // 重新绑定滑块事件
+            setTimeout(() => {
+                attachSliderListeners();
+            }, 50);
+        }
+
+        // 绑定滑块监听器
+        function attachSliderListeners() {
+            const sliders = document.querySelectorAll('.question-slider');
+            console.log(`绑定 ${sliders.length} 个滑块监听器`);
+            
+            sliders.forEach(slider => {
+                // 移除旧的监听器
+                const newSlider = slider.cloneNode(true);
+                slider.parentNode.replaceChild(newSlider, slider);
+                
+                // 添加新的监听器
+                newSlider.addEventListener('input', function(e) {
+                    const questionId = this.id;
+                    const value = parseInt(this.value);
+                    const display = document.getElementById(`score-${questionId}`);
+                    
+                    if (display) {
+                        display.textContent = value;
+                        display.style.animation = 'pulse 0.3s';
+                        
+                        // 根据分数改变颜色
+                        const colors = ['#f44336', '#FF9800', '#FFC107', '#8BC34A', '#4CAF50', '#2196F3'];
+                        display.style.color = colors[value - 1] || '#4CAF50';
+                        
+                        setTimeout(() => {
+                            display.style.animation = '';
+                        }, 300);
+                    }
+                    
+                    // 保存用户回答
+                    userResponses[questionId] = value;
+                });
+                
+                // 添加触摸事件支持
+                newSlider.addEventListener('touchmove', function(e) {
+                    e.preventDefault();
+                });
+            });
+        }
+
+        // ==================== 事件监听器 ====================
+        function setupEventListeners() {
+            console.log('🔧 设置事件监听器...');
+            
+            // 语言选择器
+            const languageSelect = document.getElementById('language-select');
+            if (languageSelect) {
+                languageSelect.addEventListener('change', function(e) {
+                    currentLanguage = this.value;
+                    localStorage.setItem('big5_language', currentLanguage);
+                    console.log(`🌐 语言切换至: ${currentLanguage}`);
+                    
+                    updateLanguageUI();
+
+
+                    // 如果结果页面正在显示，也要更新结果页面的语言
+                    const resultsDiv = document.getElementById('results');
+                    if (resultsDiv && resultsDiv.style.display !== 'none') {
+            updateResultsLanguage();
+        }
+
+                    showLanguageChangeNotice(currentLanguage);
+                });
+                
+                // 设置当前值
+                languageSelect.value = currentLanguage;
+            }
+            
+            // 表单提交
+            const form = document.getElementById('personality-form');
+            if (form) {
+                form.addEventListener('submit', handleFormSubmit);
+            }
+            
+            // 年龄输入验证
+            const ageInput = document.getElementById('age');
+            if (ageInput) {
+                ageInput.addEventListener('input', function() {
+                    const age = parseInt(this.value);
+                    const warning = document.getElementById('age-warning');
+                    if (age < 18 || age > 70) {
+                        warning.style.display = 'block';
+                    } else {
+                        warning.style.display = 'none';
+                    }
+                });
+            }
+            
+            // 理想职业输入
+            const idealJobInput = document.getElementById('ideal-job');
+            if (idealJobInput) {
+                idealJobInput.addEventListener('input', function() {
+                    const warning = document.getElementById('ideal-job-warning');
+                    if (this.value.trim() === '') {
+                        warning.style.display = 'block';
+                    } else {
+                        warning.style.display = 'none';
+                    }
+                });
+            }
+            
+            console.log('✅ 事件监听器设置完成');
+        }
+
+        // ==================== 表单处理 ====================
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            console.log('📋 表单提交处理');
+            
+            // 验证表单
+            if (!validateForm()) {
+                return;
+            }
+            
+            // 显示加载状态
+            showLoading(true);
+            
+            // 处理表单数据（模拟异步处理）
+            setTimeout(() => {
+                const results = processFormData();
+                showLoading(false);
+                showResults(results);
+            }, 1500);
+        }
+
+        // 验证表单
+        function validateForm() {
+            let isValid = true;
+            
+            // 验证年龄
+            const age = parseInt(document.getElementById('age').value);
+            const ageWarning = document.getElementById('age-warning');
+            if (age < 18 || age > 70) {
+                ageWarning.style.display = 'block';
+                isValid = false;
+            } else {
+                ageWarning.style.display = 'none';
+            }
+            
+            // 验证理想职业
+            const idealJob = document.getElementById('ideal-job').value.trim();
+            const idealJobWarning = document.getElementById('ideal-job-warning');
+            if (!idealJob) {
+                idealJobWarning.style.display = 'block';
+                isValid = false;
+            } else {
+                idealJobWarning.style.display = 'none';
+            }
+            
+            // 验证所有问题已回答
+            const questionsWarning = document.getElementById('questions-warning');
+            const allAnswered = Object.keys(userResponses).length >= 74 && 
+                              Object.values(userResponses).every(v => v >= 1 && v <= 6);
+            
+            if (!allAnswered) {
+                questionsWarning.style.display = 'block';
+                isValid = false;
+            } else {
+                questionsWarning.style.display = 'none';
+            }
+            
+            return isValid;
+        }
+
+        // 显示/隐藏加载状态
+        function showLoading(show) {
+            const loadingDiv = document.getElementById('loading');
+            const formDiv = document.getElementById('personality-form');
+            const resultsDiv = document.getElementById('results');
+            
+            if (show) {
+                loadingDiv.style.display = 'block';
+                formDiv.style.display = 'none';
+                resultsDiv.style.display = 'none';
+            } else {
+                loadingDiv.style.display = 'none';
+            }
+        }
+
+        // ==================== 表单数据处理 ====================
+        function processFormData() {
+            console.log('🔍 处理表单数据...');
+            
+            // 计算大五人格分数
+            const bigFiveResults = calculateBigFiveScores();
+            personalityScores = bigFiveResults;
+            
+            // 计算职业推荐
+            calculateJobRecommendations(bigFiveResults.T_scores);
+            
+            return bigFiveResults;
+        }
+
+        // 计算大五人格分数
+        function calculateBigFiveScores() {
+            const gender = document.getElementById('gender').value;
+            const age = parseInt(document.getElementById('age').value);
+            
+            // 确定标准化组别
+            let normGroup;
+            if (gender === "Female") {
+                normGroup = age < 35 ? 1 : 2;
+            } else {
+                normGroup = age < 35 ? 3 : 4;
+            }
+            
+            // 获取用户回答
+            const responses = [];
+            for (let i = 0; i < 74; i++) {
+                responses.push(userResponses[`q${i}`] || 4);
+            }
+            
+            // 如果有标准化数据，使用它
+            let T_scores = [50, 50, 50, 50, 50];
+            
+            if (appData && appData.mean_norms && appData.sd_norms && appData.weights) {
+                const mu = appData.mean_norms[normGroup] || Array(74).fill(4.0);
+                const sigma = appData.sd_norms[normGroup] || Array(74).fill(1.0);
+                const weights = appData.weights;
+                
+                // 计算Z分数
+                const Z = responses.map((response, idx) => {
+                    return (response - mu[idx]) / sigma[idx];
+                });
+                
+                // 计算大五分数
+                let big5Scores = [0, 0, 0, 0, 0];
+                for (let i = 0; i < Z.length; i++) {
+                    for (let j = 0; j < 5; j++) {
+                        big5Scores[j] += Z[i] * weights[i][j];
+                    }
+                }
+                
+                // 转换为T分数
+                T_scores = big5Scores.map(score => Math.max(20, Math.min(80, Math.round(10 * score + 50))));
+            }
+            
+            console.log('大五人格分数:', T_scores);
+            
+            return {
+                T_scores: T_scores,
+                normGroup: normGroup,
+                raw_responses: responses
+            };
+        }
+
+        // ==================== 职业推荐 ====================
+        // ==================== 优化版MLP模型（原代码完整还原） ====================
+        class OptimizedJobRecommenderMLP {
+    constructor() {
+        this.inputDim = 5;
+        this.hiddenDim = 128;
+        this.outputDim = 263; // 职业数量
+        
+        // 使用稳定初始化
+        this.initializeWeights();
+        
+        console.log('优化版MLP模型初始化完成');
+    }
+    
+    // 初始化权重
+    initializeWeights() {
+        // 第一层：He初始化（适合ReLU）
+        this.weights1 = this.initializeLayer(this.inputDim, this.hiddenDim, 'first');
+        this.bias1 = Array(this.hiddenDim).fill(0.1); // 小的正偏置避免死亡ReLU
+        
+        // 第二层：较小权重
+        this.weights2 = this.initializeLayer(this.hiddenDim, this.outputDim, 'second');
+        this.bias2 = Array(this.outputDim).fill(0);
+    }
+    
+    // 初始化层权重
+    initializeLayer(inputSize, outputSize, layerType) {
+        const weights = [];
+        let scale;
+        
+        if (layerType === 'first') {
+            // He初始化：std = sqrt(2/inputSize)
+            scale = Math.sqrt(2.0 / inputSize);
+        } else {
+            // 第二层使用较小权重
+            scale = Math.sqrt(1.0 / inputSize);
+        }
+        
+        for (let i = 0; i < inputSize; i++) {
+            weights[i] = [];
+            for (let j = 0; j < outputSize; j++) {
+                // 使用正态分布
+                weights[i][j] = this.gaussianRandom(0, scale);
+            }
+        }
+        
+        return weights;
+    }
+    
+    // 高斯分布随机数生成器
+    gaussianRandom(mean = 0, stdev = 1) {
+        let u = 0, v = 0;
+        while (u === 0) u = Math.random();
+        while (v === 0) v = Math.random();
+        return mean + stdev * Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+    }
+    
+    // 前向传播
+    forward(x) {
+        // 验证输入维度
+        if (x.length !== this.inputDim) {
+            console.error(`输入维度不匹配: 期望${this.inputDim}, 实际${x.length}`);
+            return Array(this.outputDim).fill(0);
+        }
+        
+        // 第一层: Linear(5, 128) + ReLU
+        const hidden = this.linear(x, this.weights1, this.bias1);
+        const hiddenRelu = this.relu(hidden);
+        
+        // 第二层: Linear(128, 263)
+        const output = this.linear(hiddenRelu, this.weights2, this.bias2);
+        
+        return output;
+    }
+    
+    // 线性层
+    linear(input, weights, bias) {
+        const outputSize = weights[0].length;
+        const output = new Array(outputSize);
+        
+        for (let i = 0; i < outputSize; i++) {
+            let sum = bias[i];
+            for (let j = 0; j < input.length; j++) {
+                sum += input[j] * weights[j][i];
+            }
+            output[i] = sum;
+        }
+        
+        return output;
+    }
+    
+    // ReLU激活函数
+    relu(arr) {
+        return arr.map(val => Math.max(0, val));
+    }
+}
+
+
+
+
+
+
+        function calculateJobRecommendations(T_scores) {
+    console.log('=== 开始职业匹配度计算（优化版） ===');
+    
+    if (!appData) {
+        console.error('数据未加载');
+        return;
+    }
+    
+    const { 
+        scaled_features,  // 职业特征矩阵 (263×5)
+        pca_weights,      // 加权欧几里得权重
+        job_translations, // 职业名称翻译
+        job_codes         // 职业代码
+    } = appData;
+    
+    const jobNames = job_translations?.[currentLanguage] || job_translations?.en || [];
+    
+    jobRecommendations = [];
+    
+    // 1. 标准化用户输入（T分数→Z分数）
+    const userScaled = T_scores.map(score => (score - 50) / 10);
+    console.log('标准化用户特征:', userScaled.map(v => v.toFixed(3)));
+    
+    // 2. MLP模型预测（使用优化版）
+    const mlpPredictions = calculateMLPPredictions(userScaled);
+    
+    // 3. 加权欧几里得相似度
+    const similarities = calculateWeightedEuclideanSimilarity(userScaled, scaled_features, pca_weights);
+    
+    // 4. 计算综合分数 = 相似度 × MLP预测值
+    const allScores = calculateCompositeScores(similarities, mlpPredictions);
+    
+    // 5. 构建职业推荐数组
+    buildJobRecommendations(allScores, jobNames, job_codes, similarities, mlpPredictions);
+    
+    // 6. 排序（降序）
+    jobRecommendations.sort((a, b) => b.score - a.score);
+    
+    // 7. 分析结果
+    analyzeRecommendationResults();
+    
+    console.log('=== 职业匹配度计算完成 ===');
+    return jobRecommendations;
+}
+
+// MLP预测计算（优化版）
+function calculateMLPPredictions(userScaled) {
+    console.log('计算MLP预测（优化版）...');
+    
+    const mlp = new OptimizedJobRecommenderMLP();
+    const rawOutput = mlp.forward(userScaled);
+    
+    // 应用softmax效果（模拟概率分布）
+    const softmaxOutput = softmax(rawOutput);
+    
+    console.log(`MLP预测范围: ${Math.min(...softmaxOutput).toFixed(4)} - ${Math.max(...softmaxOutput).toFixed(4)}`);
+    console.log(`MLP预测均值: ${(softmaxOutput.reduce((a,b)=>a+b)/softmaxOutput.length).toFixed(4)}`);
+    
+    return softmaxOutput;
+}
+
+// Softmax函数
+function softmax(arr) {
+    // 数值稳定版本：减去最大值
+    const maxVal = Math.max(...arr);
+    const exps = arr.map(val => Math.exp(val - maxVal));
+    const sumExps = exps.reduce((a, b) => a + b, 0);
+    
+    return exps.map(exp => exp / sumExps);
+}
+
+// 加权欧几里得相似度计算
+function calculateWeightedEuclideanSimilarity(userScaled, jobFeatures, weights) {
+    console.log('计算加权欧几里得相似度...');
+    
+    const similarities = [];
+    const distances = [];
+    
+    for (let i = 0; i < jobFeatures.length; i++) {
+        const jobVector = jobFeatures[i];
+        
+        // 计算距离
+        let distance = 0;
+        
+        if (weights && Array.isArray(weights[0])) {
+            // 权重矩阵 (5×5)
+            for (let j = 0; j < userScaled.length; j++) {
+                let dimDist = 0;
+                for (let k = 0; k < userScaled.length; k++) {
+                    const diff = jobVector[k] - userScaled[k];
+                    dimDist += weights[j][k] * diff * diff;
+                }
+                distance += dimDist;
+            }
+        } else if (weights && weights.length === userScaled.length) {
+            // 权重向量 (5×1)
+            for (let j = 0; j < userScaled.length; j++) {
+                const diff = jobVector[j] - userScaled[j];
+                distance += (weights[j] || 1) * diff * diff;
+            }
+        } else {
+            // 单位权重
+            for (let j = 0; j < userScaled.length; j++) {
+                const diff = jobVector[j] - userScaled[j];
+                distance += diff * diff;
+            }
+        }
+        
+        distance = Math.sqrt(distance);
+        distances.push(distance);
+    }
+    
+    // 转换为相似度（距离越小，相似度越高）
+    const maxDist = Math.max(...distances);
+    const minDist = Math.min(...distances);
+    const range = maxDist - minDist;
+    
+    console.log(`距离统计: 最小值=${minDist.toFixed(4)}, 最大值=${maxDist.toFixed(4)}, 范围=${range.toFixed(4)}`);
+    
+    if (range < 1e-10) {
+        return distances.map(() => 1);
+    }
+    
+    const similarityScores = distances.map(dist => {
+        const normalized = (dist - minDist) / range;
+        return 1 - normalized;
+    });
+    
+    console.log(`相似度范围: ${Math.min(...similarityScores).toFixed(3)} - ${Math.max(...similarityScores).toFixed(3)}`);
+    
+    return similarityScores;
+}
+
+// 计算综合分数
+function calculateCompositeScores(similarities, mlpPredictions) {
+    console.log('计算综合分数...');
+    
+    if (similarities.length !== mlpPredictions.length) {
+        console.error(`维度不匹配: 相似度${similarities.length}, MLP预测${mlpPredictions.length}`);
+        return similarities.map(() => 50);
+    }
+    
+    const compositeScores = [];
+    
+    // 综合分数 = 相似度 × MLP预测值
+    for (let i = 0; i < similarities.length; i++) {
+        const score = similarities[i] * mlpPredictions[i];
+        compositeScores.push(score);
+    }
+    
+    // 归一化到0-100
+    const minScore = Math.min(...compositeScores);
+    const maxScore = Math.max(...compositeScores);
+    const range = maxScore - minScore;
+    
+    if (range < 1e-10) {
+        return compositeScores.map(() => 50);
+    }
+    
+    const normalizedScores = compositeScores.map(score => {
+        return Math.round(((score - minScore) / range) * 100);
+    });
+    
+    console.log(`综合分数范围: ${Math.min(...normalizedScores)} - ${Math.max(...normalizedScores)}`);
+    console.log(`综合分数均值: ${(normalizedScores.reduce((a,b)=>a+b)/normalizedScores.length).toFixed(1)}`);
+    
+    return normalizedScores;
+}
+
+// 构建职业推荐数组
+function buildJobRecommendations(scores, jobNames, jobCodes, similarities, mlpPredictions) {
+    jobRecommendations = [];
+    
+    for (let i = 0; i < scores.length; i++) {
+        jobRecommendations.push({
+            name: getJobName(i),
+            code: jobCodes?.[i] || `J${1000 + i}`,
+            score: scores[i],
+            match: scores[i],
+            similarity: similarities ? Math.round(similarities[i] * 100) : 0,
+            mlp_score: mlpPredictions ? Math.round(mlpPredictions[i] * 100) : 0,
+            index: i,
+            rank: 0
+        });
+    }
+    
+    console.log(`构建了 ${jobRecommendations.length} 个职业推荐`);
+}
+
+// 分析推荐结果
+function analyzeRecommendationResults() {
+    if (jobRecommendations.length === 0) {
+        console.warn('没有职业推荐结果');
+        return;
+    }
+    
+    // 更新排名
+    jobRecommendations.forEach((job, index) => {
+        job.rank = index + 1;
+    });
+    
+    // 统计信息
+    const scores = jobRecommendations.map(j => j.match);
+    const stats = {
+        total: jobRecommendations.length,
+        avg: scores.reduce((a, b) => a + b, 0) / scores.length,
+        min: Math.min(...scores),
+        max: Math.max(...scores),
+        std: Math.sqrt(scores.reduce((sum, score) => sum + Math.pow(score - scores.reduce((a,b)=>a+b)/scores.length, 2), 0) / scores.length)
+    };
+    
+    // 前10名和后10名
+    const top10 = jobRecommendations.slice(0, 10);
+    const bottom10 = jobRecommendations.slice(-10);
+    
+    stats.top10Avg = top10.reduce((sum, job) => sum + job.match, 0) / 10;
+    stats.bottom10Avg = bottom10.reduce((sum, job) => sum + job.match, 0) / 10;
+    
+    console.log(' 推荐结果分析:');
+    console.log(`  总职业数: ${stats.total}`);
+    console.log(`  平均匹配度: ${stats.avg.toFixed(1)}% ± ${stats.std.toFixed(1)}%`);
+    console.log(`  匹配度范围: ${stats.min}% - ${stats.max}%`);
+    console.log(`  前10名平均: ${stats.top10Avg.toFixed(1)}%`);
+    console.log(`  后10名平均: ${stats.bottom10Avg.toFixed(1)}%`);
+    
+    // 检查合理性
+    if (stats.top10Avg <= stats.bottom10Avg) {
+        console.warn('⚠️ 注意：前10名平均分不高于后10名，可能存在计算问题');
+    }
+    
+    // 显示详细结果
+    console.log('🏆 前3名职业:');
+    top10.slice(0, 3).forEach((job, i) => {
+        console.log(`  ${i+1}. ${job.name} - ${job.match}% (相似度:${job.similarity}%, MLP:${job.mlp_score}%)`);
+    });
+    
+    console.log('⚠️ 后3名职业:');
+    bottom10.slice(-3).forEach((job, i) => {
+        const rank = jobRecommendations.length - 3 + i + 1;
+        console.log(`  ${rank}. ${job.name} - ${job.match}% (相似度:${job.similarity}%, MLP:${job.mlp_score}%)`);
+    });
+}
+
+// ==================== 结果显示函数 ====================
+// 显示职业统计信息
+
+
+// ==================== 辅助函数 ====================
+// 获取职业名称（使用多语言数据）- 这是新函数！
+function getJobName(jobIndex) {
+    if (!appData) return `职业 ${jobIndex + 1}`;
+    
+    // 优先使用 job_translations 中的多语言数据
+    if (appData.job_translations && 
+        appData.job_translations[currentLanguage] && 
+        appData.job_translations[currentLanguage][jobIndex]) {
+        return appData.job_translations[currentLanguage][jobIndex];
+    }
+    
+    // 后备：使用英文数据
+    if (appData.job_translations && appData.job_translations.en && appData.job_translations.en[jobIndex]) {
+        return appData.job_translations.en[jobIndex];
+    }
+    
+    // 最后的后备：使用 job_names
+    if (appData.job_names && appData.job_names[jobIndex]) {
+        return appData.job_names[jobIndex];
+    }
+    
+    return `职业 ${jobIndex + 1}`;
+}
+
+// 显示前10个推荐职业
+function displayTopCareers() {
+    const container = document.getElementById('top-careers');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    const topJobs = jobRecommendations.slice(0, 10);
+    
+    if (topJobs.length === 0) {
+        const noDataText = translations[currentLanguage]?.noCareerData || '暂无职业推荐数据';
+        container.innerHTML = `
+            <div class="career-item top" style="grid-column: 1 / -1; text-align: center; padding: 20px;">
+                <p style="color: #666; font-style: italic;">${noDataText}</p>
+            </div>
+        `;
+        return;
+    }
+    
+    topJobs.forEach((job, index) => {
+        // 使用多语言职业名称
+        const jobName = getJobName(job.index);
+        
+        const div = document.createElement('div');
+        div.className = 'career-item top';
+        div.innerHTML = `
+            <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                <div class="rank" style="background: #4CAF50; color: white; width: 32px; height: 32px; 
+                     border-radius: 50%; text-align: center; line-height: 32px; font-weight: bold; 
+                     margin-right: 12px;">${index + 1}</div>
+                <div style="flex-grow: 1;">
+                    <strong style="display: block; font-size: 16px; color: #333; margin-bottom: 4px;">${jobName}</strong>
+                    <small style="color: #666; font-size: 12px;">代码: ${job.code}</small>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <div>
+                    <div style="color: #4CAF50; font-weight: bold; font-size: 20px;">${job.match}%</div>
+                    <div style="font-size: 11px; color: #888;">综合匹配度</div>
+                </div>
+                
+            </div>
+            
+            <!-- 分解分数 -->
+            <div style="display: flex; justify-content: space-between; font-size: 11px; color: #666; margin-top: 8px;">
+                
+                
+            </div>
+            
+            <!-- 进度条 -->
+            <div style="margin-top: 10px; height: 6px; background: #e0e0e0; border-radius: 3px; overflow: hidden;">
+                <div style="height: 100%; width: ${job.match}%; background: #4CAF50; 
+                     border-radius: 3px; transition: width 0.5s ease;"></div>
+            </div>
+        `;
+        container.appendChild(div);
+    });
+}
+
+// 显示后10个不推荐职业
+function displayBottomCareers() {
+    const container = document.getElementById('bottom-careers');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    const bottomJobs = jobRecommendations.slice(-10);
+    
+    if (bottomJobs.length === 0) {
+        const noDataText = translations[currentLanguage]?.noCareerData || '暂无职业数据';
+        container.innerHTML = `
+            <div class="career-item bottom" style="grid-column: 1 / -1; text-align: center; padding: 20px;">
+                <p style="color: #666; font-style: italic;">${noDataText}</p>
+            </div>
+        `;
+        return;
+    }
+    
+    // 关键修改：反转数组，让263名变成第1不合适的，254名变成第10不合适的
+    const reversedBottomJobs = bottomJobs.slice().reverse();
+    
+    reversedBottomJobs.forEach((job, index) => {
+        const displayRank = index + 1; // 1-10，表示不合适程度排名
+        
+        const div = document.createElement('div');
+        div.className = 'career-item bottom';
+        div.innerHTML = `
+            <div style="display: flex; align-items: center; margin-bottom: 12px;">
+                <div class="rank" style="background: #f44336; color: white; width: 32px; height: 32px; 
+                     border-radius: 50%; text-align: center; line-height: 32px; font-weight: bold; 
+                     margin-right: 12px;">${displayRank}</div>
+                <div style="flex-grow: 1;">
+                    <strong style="display: block; font-size: 16px; color: #333; margin-bottom: 4px;">${getJobName(job.index)}</strong>
+                    <small style="color: #666; font-size: 12px;">代码: ${job.code}</small>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <div>
+                    <div style="color: #f44336; font-weight: bold; font-size: 20px;">${job.match}%</div>
+                    <div style="font-size: 11px; color: #888;">综合匹配度</div>
+                </div>
+                
+            </div>
+            
+            <!-- 分解分数 -->
+            <div style="text-align: center; font-size: 11px; color: #666; margin-top: 8px;">
+                
+            </div>
+            
+            <!-- 进度条 -->
+            <div style="margin-top: 10px; height: 6px; background: #e0e0e0; border-radius: 3px; overflow: hidden;">
+                <div style="height: 100%; width: ${job.match}%; background: #f44336; 
+                     border-radius: 3px; transition: width 0.5s ease;"></div>
+            </div>
+        `;
+        container.appendChild(div);
+    });
+}
+// ==================== 结果显示函数 ====================
+// 显示结果页面
+function showResults(results) {
+    console.log(' 显示结果页面...');
+    
+
+    
+    // 隐藏表单，显示结果
+    document.getElementById('personality-form').style.display = 'none';
+    document.getElementById('loading').style.display = 'none';
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.style.display = 'block';
+    
+    // 显示人格分数
+    displayTraitScores(results.T_scores);
+    
+    // 显示职业推荐
+    displayTopCareers();
+    displayBottomCareers();
+    
+    // 显示职业统计信息
+    //displayCareerStatistics();
+    
+    // 显示理想职业匹配
+    //displayIdealJobMatch();
+    
+    // 创建雷达图
+    createRadarChart(results.T_scores);
+    
+    // 更新UI语言
+    updateResultsLanguage();
+    
+    // 滚动到结果区域
+    resultsDiv.scrollIntoView({ behavior: 'smooth' });
+}
+
+// 显示人格特质分数
+function displayTraitScores(T_scores) {
+    const container = document.getElementById('trait-scores-container');
+    if (!container) return;
+    
+    // 获取当前语言的特质名称
+    const traitNames = {
+        'en': ['Neuroticism', 'Extraversion', 'Openness', 'Agreeableness', 'Conscientiousness'],
+        'zh': ['神经质', '外向性', '开放性', '宜人性', '尽责性'],
+        'es': ['Neuroticismo', 'Extraversión', 'Apertura', 'Amabilidad', 'Conciencia'],
+        'fr': ['Névrosisme', 'Extraversion', 'Ouverture', 'Amabilité', 'Conscienciosité'],
+        'ru': ['Невротизм', 'Экстраверсия', 'Открытость', 'Доброжелательность', 'Сознательность'],
+        'ar': ['الضيق العصبي', 'الانفتاح', 'الانبساطية', 'التعاطف', 'الضمير المهني']
+    };
+    
+    const names = traitNames[currentLanguage] || traitNames.en;
+    
+    let html = '';
+    names.forEach((name, index) => {
+        const score = T_scores[index];
+        let color = '#4CAF50'; // 默认绿色
+        
+        // 根据分数调整颜色
+        if (score < 35) color = '#f44336'; // 红色
+        else if (score < 45) color = '#FF9800'; // 橙色
+        else if (score < 55) color = '#FFC107'; // 黄色
+        else if (score < 65) color = '#8BC34A'; // 浅绿
+        // 55-65保持默认绿色
+        else if (score > 65) color = '#2196F3'; // 蓝色
+        
+        html += `
+            <div class="trait-score">
+                <div class="trait-name">${name}</div>
+                <div class="trait-value" style="border-color: ${color}; color: ${color};">
+                    ${score}
+                </div>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = html;
+}
+
+// 显示理想职业匹配
+function displayIdealJobMatch() {
+    const idealJobInput = document.getElementById('ideal-job').value.trim();
+    const idealJobText = document.getElementById('ideal-job-text');
+    const matchScore = document.getElementById('match-score');
+    
+    if (!idealJobInput || !idealJobText || !matchScore) return;
+    
+    // 寻找最接近的理想职业
+    let bestMatch = null;
+    let bestScore = -1;
+    
+    if (jobRecommendations && jobRecommendations.length > 0) {
+        // 使用多语言职业名称进行匹配
+        for (let job of jobRecommendations) {
+            const jobName = getJobName(job.index);
+            if (jobName.toLowerCase().includes(idealJobInput.toLowerCase()) ||
+                idealJobInput.toLowerCase().includes(jobName.toLowerCase())) {
+                bestMatch = { ...job, name: jobName };
+                bestScore = job.match;
+                break;
+            }
+        }
+        
+        // 如果没有精确匹配，使用第一名
+        if (!bestMatch) {
+            const firstJob = jobRecommendations[0];
+            bestMatch = {
+                ...firstJob,
+                name: getJobName(firstJob.index)
+            };
+            bestScore = firstJob.match;
+        }
+        
+        bestScore = bestMatch.match;
+        
+        // 获取翻译文本
+        const resultTexts = {
+            'en': "The career closest to your ideal is: ",
+            'zh': "您的理想职业最相近的是：",
+            'es': "La carrera más cercana a su ideal es: ",
+            'fr': "Le métier le plus proche de votre idéal est : ",
+            'ru': "Самая близкая к вашей идеальной профессия: ",
+            'ar': "أقرب مهنة إلى مهنتك المثالية هي: "
+        };
+        
+        const text = resultTexts[currentLanguage] || resultTexts.en;
+        
+        idealJobText.innerHTML = `
+            <p style="margin-bottom: 10px; font-size: 18px;">${text}</p>
+            <div class="job-name-highlight">${bestMatch.name}</div>
+            <p style="margin-top: 10px; font-size: 14px; opacity: 0.9;">
+                代码: ${bestMatch.code} | 排名: ${bestMatch.rank}/${jobRecommendations.length}
+            </p>
+        `;
+        
+        matchScore.textContent = `${bestScore}%`;
+        
+        // 根据匹配度调整颜色
+        if (bestScore >= 70) {
+            matchScore.style.color = '#4CAF50';
+        } else if (bestScore >= 50) {
+            matchScore.style.color = '#FF9800';
+        } else {
+            matchScore.style.color = '#f44336';
+        }
+    }
+}
+
+// 创建雷达图
+function createRadarChart(T_scores) {
+    const chartDiv = document.getElementById('radar-chart');
+    if (!chartDiv) return;
+    
+    // 获取当前语言的特质名称
+    const traitNames = {
+        'en': ['Neuroticism', 'Extraversion', 'Openness', 'Agreeableness', 'Conscientiousness'],
+        'zh': ['神经质', '外向性', '开放性', '宜人性', '尽责性'],
+        'es': ['Neuroticismo', 'Extraversión', 'Apertura', 'Amabilidad', 'Conciencia'],
+        'fr': ['Névrosisme', 'Extraversion', 'Ouverture', 'Amabilité', 'Conscienciosité'],
+        'ru': ['Невротизм', 'Экстраверсия', 'Открытость', 'Доброжелательность', 'Сознательность'],
+        'ar': ['الضيق العصبي', 'الانفتاح', 'الانبساطية', 'التعاطف', 'الضمير المهني']
+    };
+    
+    const names = traitNames[currentLanguage] || traitNames.en;
+    
+    const data = [{
+        type: 'scatterpolar',
+        r: T_scores,
+        theta: names,
+        fill: 'toself',
+        name: 'Your Scores',
+        fillcolor: 'rgba(76, 175, 80, 0.3)',
+        line: {
+            color: 'rgb(76, 175, 80)',
+            width: 2
+        },
+        marker: {
+            color: 'rgb(76, 175, 80)',
+            size: 8
+        }
+    }];
+    
+    const layout = {
+        polar: {
+            radialaxis: {
+                visible: true,
+                range: [20, 80],
+                tickvals: [20, 35, 50, 65, 80],
+                ticktext: ['20', '35', '50', '65', '80'],
+                gridcolor: '#e0e0e0',
+                linecolor: '#ccc'
+            },
+            angularaxis: {
+                gridcolor: '#e0e0e0',
+                linecolor: '#ccc'
+            },
+            bgcolor: 'rgba(255,255,255,0.5)'
+        },
+        showlegend: false,
+        paper_bgcolor: 'rgba(0,0,0,0)',
+        plot_bgcolor: 'rgba(0,0,0,0)',
+        margin: {
+            l: 80,
+            r: 80,
+            t: 30,
+            b: 30
+        }
+    };
+    
+    const config = {
+        responsive: true,
+        displayModeBar: false
+    };
+    
+    // 清除现有图表
+    chartDiv.innerHTML = '';
+    
+    // 创建新图表
+    Plotly.newPlot(chartDiv, data, layout, config);
+    
+    // 添加图例
+    addChartLegend(chartDiv);
+}
+
+// 添加雷达图图例
+function addChartLegend(chartDiv) {
+    const legend = document.createElement('div');
+    legend.style.cssText = `
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    `;
+    
+    const ranges = [
+        { min: 20, max: 35, color: '#f44336', label: 'Very Low' },
+        { min: 35, max: 45, color: '#FF9800', label: 'Low' },
+        { min: 45, max: 55, color: '#FFC107', label: 'Average' },
+        { min: 55, max: 65, color: '#8BC34A', label: 'High' },
+        { min: 65, max: 80, color: '#2196F3', label: 'Very High' }
+    ];
+    
+    const legendLabels = {
+        'en': ['Very Low', 'Low', 'Average', 'High', 'Very High'],
+        'zh': ['非常低', '低', '中等', '高', '非常高'],
+        'es': ['Muy Bajo', 'Bajo', 'Promedio', 'Alto', 'Muy Alto'],
+        'fr': ['Très Bas', 'Bas', 'Moyen', 'Élevé', 'Très Élevé'],
+        'ru': ['Очень низкий', 'Низкий', 'Средний', 'Высокий', 'Очень высокий'],
+        'ar': ['منخفض جدا', 'منخفض', 'متوسط', 'مرتفع', 'مرتفع جدا']
+    };
+    
+    const labels = legendLabels[currentLanguage] || legendLabels.en;
+    
+    ranges.forEach((range, index) => {
+        const item = document.createElement('div');
+        item.style.cssText = `
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            color: #666;
+        `;
+        
+        const colorBox = document.createElement('div');
+        colorBox.style.cssText = `
+            width: 12px;
+            height: 12px;
+            background: ${range.color};
+            border-radius: 2px;
+        `;
+        
+        item.appendChild(colorBox);
+        item.appendChild(document.createTextNode(`${range.min}-${range.max}: ${labels[index]}`));
+        legend.appendChild(item);
+    });
+    
+    chartDiv.parentNode.appendChild(legend);
+}
+
+// 更新结果页面的语言
+function updateResultsLanguage() {
+    // 结果页面的标题已经在 updateLanguageUI 中更新
+    // 这里可以添加其他需要更新的元素
+}
+
+// ==================== 其他功能函数 ====================
+// 生成PDF报告（占位符）
+// 生成PDF报告
+function generatePDF() {
+    const element = document.getElementById('results');
+    if (!element) {
+        alert('请先完成测试并查看结果。');
+        return;
+    }
+
+    // 显示生成提示
+    const originalText = document.getElementById('download-btn').textContent;
+    const btn = document.getElementById('download-btn');
+    btn.textContent = '正在准备页面...';
+    btn.disabled = true;
+
+    // 等待所有动态内容完全渲染
+    setTimeout(() => {
+        // 强制重绘确保Plotly图表完全渲染
+        if (window.Plotly) {
+            Plotly.Plots.resize(document.getElementById('radar-chart'));
+        }
+
+        // 等待图表渲染完成
+        setTimeout(() => {
+            generatePDFWithCanvas(element, btn, originalText);
+        }, 1000);
+    }, 500);
+}
+
+function generatePDFWithCanvas(element, btn, originalText) {
+    // 临时修复CSS以确保正确渲染顺序
+    const originalStyles = fixElementStyles(element);
+    
+    html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#ffffff',
+        logging: true,
+        allowTaint: true,
+        // 关键配置：按DOM顺序渲染，忽略z-index
+        ignoreElements: (element) => false,
+        onclone: function(clonedDoc) {
+            // 克隆时修复样式
+            const clonedElement = clonedDoc.getElementById('results');
+            if (clonedElement) {
+                fixElementStyles(clonedElement);
+                
+                // 确保所有内容可见且按正确顺序
+                clonedElement.style.display = 'block';
+                clonedElement.style.overflow = 'visible';
+                clonedElement.style.position = 'relative';
+                clonedElement.style.zIndex = '1';
+                
+                // 修复雷达图容器
+                const radarChart = clonedElement.querySelector('#radar-chart');
+                if (radarChart) {
+                    radarChart.style.position = 'relative';
+                    radarChart.style.zIndex = '2';
+                }
+                
+                // 修复职业卡片顺序
+                const careerItems = clonedElement.querySelectorAll('.career-item');
+                careerItems.forEach((item, index) => {
+                    item.style.position = 'relative';
+                    item.style.zIndex = (index + 3).toString();
+                    item.style.breakInside = 'avoid'; // 防止分页时断裂
+                });
+            }
+        }
+    }).then(canvas => {
+        // 恢复原始样式
+        restoreElementStyles(element, originalStyles);
+        
+        // 继续生成PDF的代码...
+        const imgData = canvas.toDataURL('image/jpeg', 0.95);
+        
+        // 使用正确的jsPDF调用方式
+        let pdf;
+        if (window.jspdf && window.jspdf.jsPDF) {
+            const { jsPDF } = window.jspdf;
+            pdf = new jsPDF('p', 'mm', 'a4');
+        } else if (window.jsPDF) {
+            pdf = new window.jsPDF('p', 'mm', 'a4');
+        } else {
+            throw new Error('jsPDF库未正确加载');
+        }
+        
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        
+        // 计算图片尺寸
+        const imgWidth = pdfWidth - 20;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        
+        // 添加图片到PDF（完整一页，不分页）
+        pdf.addImage(imgData, 'JPEG', 10, 10, imgWidth, imgHeight);
+        
+        // 保存文件
+        const fileName = '人格测试报告_' + 
+            new Date().getFullYear() + 
+            ('0' + (new Date().getMonth() + 1)).slice(-2) + 
+            ('0' + new Date().getDate()).slice(-2) + '.pdf';
+        
+        pdf.save(fileName);
+        
+        // 恢复按钮状态
+        btn.textContent = originalText;
+        btn.disabled = false;
+        
+    }).catch(error => {
+        console.error('生成PDF失败:', error);
+        restoreElementStyles(element, originalStyles);
+        btn.textContent = originalText;
+        btn.disabled = false;
+        alert('生成PDF时出错: ' + error.message);
+    });
+}
+
+// 辅助函数：修复元素样式以确保正确渲染顺序
+function fixElementStyles(element) {
+    const originalStyles = {};
+    
+    // 保存原始样式
+    originalStyles.display = element.style.display;
+    originalStyles.overflow = element.style.overflow;
+    originalStyles.position = element.style.position;
+    originalStyles.zIndex = element.style.zIndex;
+    
+    // 应用修复样式
+    element.style.display = 'block';
+    element.style.overflow = 'visible';
+    element.style.position = 'relative';
+    element.style.zIndex = '1';
+    
+    // 修复所有子元素
+    const children = element.querySelectorAll('*');
+    children.forEach((child, index) => {
+        // 保存子元素原始样式
+        if (!originalStyles.children) originalStyles.children = [];
+        originalStyles.children.push({
+            element: child,
+            position: child.style.position,
+            zIndex: child.style.zIndex,
+            float: child.style.float,
+            display: child.style.display
+        });
+        
+        // 应用修复样式
+        child.style.position = 'relative';
+        child.style.zIndex = (index + 2).toString();
+        child.style.float = 'none';
+        child.style.display = 'block';
+    });
+    
+    return originalStyles;
+}
+
+// 恢复原始样式
+function restoreElementStyles(element, originalStyles) {
+    if (!originalStyles) return;
+    
+    element.style.display = originalStyles.display;
+    element.style.overflow = originalStyles.overflow;
+    element.style.position = originalStyles.position;
+    element.style.zIndex = originalStyles.zIndex;
+    
+    if (originalStyles.children) {
+        originalStyles.children.forEach(style => {
+            if (style.element) {
+                style.element.style.position = style.position;
+                style.element.style.zIndex = style.zIndex;
+                style.element.style.float = style.float;
+                style.element.style.display = style.display;
+            }
+        });
+    }
+}
+
+// 重新开始测试
+function restartTest() {
+    console.log('🔄 重新开始测试...');
+    
+    // 隐藏结果，显示表单
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('personality-form').style.display = 'block';
+    document.getElementById('loading').style.display = 'none';
+    
+    // 重置表单
+    document.getElementById('age').value = 25;
+    document.getElementById('gender').value = 'Female';
+    document.getElementById('ideal-job').value = '';
+    
+    // 重置用户回答
+    userResponses = {};
+    
+    // 重新初始化问题
+    initializeQuestions();
+    
+    // 滚动到顶部
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+    </script>
+</body>
+</html>

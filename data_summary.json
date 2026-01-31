@@ -1,0 +1,26 @@
+{
+  "files_converted": [
+    "job_names.npy → JSON array",
+    "job_codes.npy → JSON array",
+    "pca_weights.npy → JSON array",
+    "scaled_features.npy → JSON array",
+    "job_*.npy → JSON arrays (per language)",
+    "questions.tsv → JSON dict (per language)",
+    "meanNorms.tsv → JSON dict",
+    "sdNorms.tsv → JSON dict",
+    "weightsB5.tsv → JSON array",
+    "your_scaler.pkl → JSON params"
+  ],
+  "data_structure": {
+    "job_data": "Contains all job information and features",
+    "question_data": "All questions in 6 languages",
+    "norm_data": "Standardization data for 4 demographic groups",
+    "translation_data": "All UI text translations",
+    "scaler_params": "Parameters for StandardScaler"
+  },
+  "usage_instructions": {
+    "frontend": "Load app_data_complete.json once at startup",
+    "backend": "Can still use original files or JSON version",
+    "api": "JSON format is easier to serve via REST API"
+  }
+}
